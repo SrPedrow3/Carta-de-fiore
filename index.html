@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Carta Especial</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .carta-cerrada {
+            background-color: #e0e0e0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 30px;
+            cursor: pointer;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .carta-cerrada:hover {
+            transform: translateY(-5px);
+            box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .carta-abierta {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+            position: absolute;
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease;
+            z-index: 10;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .carta-abierta.mostrar {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .tapa-superior {
+            background-color: #d0d0d0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            border-radius: 5px 5px 0 0;
+            transform-origin: bottom center;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .carta-cerrada:hover .tapa-superior {
+            transform: rotateX(-160deg);
+            opacity: 0;
+        }
+        
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .agradecimiento {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .poema {
+            color: #777;
+            white-space: pre-line;
+            font-style: italic;
+        }
+
+        .sorpresa-container {
+            margin-top: 30px;
+        }
+        
+        .sorpresa-container a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .sorpresa-container a:hover {
+            background-color: #ff8cbb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carta-cerrada" id="cartaCerrada">
+        Haz clic para abrir la carta...
+        <div class="tapa-superior"></div>
+    </div>
+
+    <div class="carta-abierta" id="cartaAbierta">
+        <h2>Para mi querida Fiore</h2>
+        <p class="agradecimiento">
+            Quería seguir agradeciéndote por todo lo que haces por mí, quisiera estar contigo en todas mis vidas, y que seas siempre tú, no quiero a nadie más. Si algún día te sientes mal dímelo, no seré de gran ayuda pero estaré contigo. Cuéntame todos tus problemas e inseguridades, dime quien te molesta y quien te causa inseguridad, platícame tus miedos y tus logros. Quiero verte feliz.
+        </p>
+        <p class="poema">
+            En tu mirada encuentro mi calma,<br>
+            la melodía que le hace bien a mi alma.<br>
+            Tus manos son mi refugio, mi hogar,<br>
+            la razón perfecta para amar.<br><br>
+            Eres el sol que mi día ilumina,<br>
+            la luna que mi noche domina.<br>
+            Contigo no existen miedos ni dudas,<br>
+            en tus brazos mi mundo se muda.<br><br>
+            Mi amor por ti es un eterno latido,<br>
+            el más hermoso poema que he escrito.<br>
+            Por siempre a tu lado quiero estar,<br>
+            en cada vida, en cada lugar.
+        </p>
+        <div class="sorpresa-container">
+            <p>Y aquí tienes una sorpresa especial...</p>
+            <a href="https://drive.google.com/file/d/19NxjsNi530mFczVYmcV_ECSedbLdDZB0/view?usp=drivesdk" target="_blank">Ver sorpresa</a>
+        </div>
+    </div>
+
+    <script>
+        const cartaCerrada = document.getElementById('cartaCerrada');
+        const cartaAbierta = document.getElementById('cartaAbierta');
+
+        cartaCerrada.addEventListener('click', () => {
+            cartaCerrada.style.opacity = '0';
+            cartaCerrada.style.transform = 'scale(0.5)';
+            
+            setTimeout(() => {
+                cartaCerrada.style.display = 'none';
+                cartaAbierta.classList.add('mostrar');
+            }, 500);
+        });
+    </script>
+
+</body>
+</html>
+
